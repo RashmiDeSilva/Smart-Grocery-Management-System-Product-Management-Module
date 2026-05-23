@@ -1,3 +1,4 @@
+
 # Smart Grocery Management System – Product Management Module
 
 ## Overview
@@ -20,8 +21,6 @@ The system focuses on improving product organization, reducing manual management
 - Temporary archiving of discontinued, seasonal, or out-of-stock items instead of permanent deletion.
 - Restoring archived products back to the active catalog with a single click.
 
-### AI Expiry Risk prediction evaluation UI
-- Custom evaluation UI section in the product details page showing Expiry risk level (High Risk, Medium Risk, Low Risk), recommended action (e.g. discount recommendation), and risk probability percentage based on stock and sales details.
 
 ---
 
@@ -88,3 +87,7 @@ product-management/
 
 - **Module Name**: Product Management
 - **GitHub Repository**: [Smart-Grocery-Management-System-Product-Management-Module](https://github.com/RashmiDeSilva/Smart-Grocery-Management-System-Product-Management-Module.git)
+
+# Smart-Grocery-Management-System-Product-Management-Module
+Smart Grocery Management System – Product Management Module built with React, Node.js, Express, and MongoDB.
+
