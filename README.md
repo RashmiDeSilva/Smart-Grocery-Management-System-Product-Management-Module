@@ -63,7 +63,7 @@ product-management/
 3. Set your environment variables in `.env` (e.g., `PORT=5000`, `MONGO_URI`).
 4. Start the server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### 2. Frontend client Setup
