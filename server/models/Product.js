@@ -55,18 +55,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    riskLevel: {
-        type: String,
-        default: 'LOW'
-    },
-    riskProbability: {
-        type: Number,
-        default: 0
-    },
-    riskAction: {
-        type: String,
-        default: 'No action needed'
-    },
     sold: {
         type: Number,
         default: 0

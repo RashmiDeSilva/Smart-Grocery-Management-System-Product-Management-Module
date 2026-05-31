@@ -5,22 +5,16 @@ import AddProduct from './pages/AddProduct';
 import EditProduct from './pages/EditProduct';
 import ProductDetails from './pages/ProductDetails';
 import {
-  Clock, Settings, Home, LayoutDashboard, Package, Search, Percent, Bell,
+  Home, LayoutDashboard, Package, Search, Percent, Bell,
   CheckCircle2, BarChart3, UserCircle, LogOut, Archive, HelpCircle, BookOpen,
-  Mail, Shield, FileText, ArrowRight, Menu, ArrowLeft
+  Mail, Shield, FileText, ArrowRight, ArrowLeft, Settings
 } from 'lucide-react';
 
 function App() {
   const location = useLocation();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const getPageTitle = () => {
-    if (location.pathname === "/staff/products") return "Product Directory";
-    if (location.pathname === "/staff/products/add") return "Add Product";
-    if (location.pathname.includes("/staff/products/edit")) return "Edit Product";
-    if (location.pathname.includes("/staff/products/details")) return "Product Details";
-    return "Staff Desk";
-  };
+
 
   const navItems = [
     { label: "Home Page", href: "/", icon: <Home size={18} /> },
@@ -114,67 +108,8 @@ function App() {
       {/* Main Content */}
       <main className={`main-content ${sidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
         
-        {/* Premium Header */}
-        <div className="invigo-header-wrapper">
-          {/* Top Header Row */}
-          <div className="invigo-header-top">
-            <div className="invigo-header-brand">
-              <span style={{ color: '#ffffff' }}>INVIGO</span>
-              <span style={{ color: '#007A5E' }}>.</span>
-              <span style={{ margin: '0 0.5rem', color: 'rgba(255, 255, 255, 0.2)' }}>|</span>
-              <span className="invigo-header-brand-sub">Product Catalog Registry</span>
-            </div>
 
-            <div className="shift-badge-container">
-              <span className="shift-badge-dot" />
-              <span className="shift-badge-text">Shift: 08:00 - 16:00</span>
-            </div>
 
-            <div className="header-right-actions">
-              <button className="header-action-btn" title="Search">
-                <Search size={16} />
-              </button>
-              <button className="header-action-btn" title="Notifications">
-                <Bell size={16} />
-                <span className="badge-dot" />
-              </button>
-              <div className="header-profile-badge">
-                <div className="header-profile-avatar">ST</div>
-                <div className="header-profile-info">
-                  <span className="header-profile-name" style={{ color: 'white' }}>Staff Hub</span>
-                  <span className="header-profile-status" style={{ color: '#10b981' }}>Active</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Nav Tabs Row */}
-          <div className="invigo-header-nav">
-            {navItems.slice(0, 6).map((item, idx) => {
-              const isActive = location.pathname.startsWith(item.href) && (item.href !== "/" || location.pathname === "/");
-              return (
-                <Link
-                  key={idx}
-                  to={item.href === "/" ? "/staff/products" : item.href}
-                  className={`header-nav-tab ${isActive ? 'active' : ''}`}
-                >
-                  {item.icon}
-                  <span>{item.label}</span>
-                  {item.badge && <span className="header-nav-badge">{item.badge}</span>}
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Breadcrumbs Row */}
-        <div className="invigo-breadcrumbs-row">
-          <span className="breadcrumb-item">Home</span>
-          <span>&gt;</span>
-          <span className="breadcrumb-item">Staff Desk</span>
-          <span>&gt;</span>
-          <span className="breadcrumb-item active">{getPageTitle()}</span>
-        </div>
 
         {/* Dynamic Route Content */}
         <div className="page-content-wrapper" style={{ flex: 1 }}>

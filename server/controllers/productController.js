@@ -1,28 +1,6 @@
 const mongoose = require('mongoose');
 const Product = require('../models/Product');
 
-// Helper to determine risk level dynamically
-const updateProductRisk = (product) => {
-    const remainingQty = product.stock || 0;
-    if (remainingQty <= 0) {
-        product.riskLevel = "LOW";
-        product.riskAction = "Sold out";
-        product.riskProbability = 0;
-    } else {
-        // Heuristic: If stock > reorderLevel * 2.5, it is HIGH risk, else LOW.
-        const reorder = product.reorderLevel || 10;
-        if (remainingQty > reorder * 2.5) {
-            product.riskLevel = "HIGH";
-            product.riskAction = "CRITICAL: Urgent discount required";
-            product.riskProbability = Number(Math.min(2.5, remainingQty / (reorder * 2)).toFixed(2));
-        } else {
-            product.riskLevel = "LOW";
-            product.riskAction = "SAFE: No action needed";
-            product.riskProbability = Number(Math.min(0.99, remainingQty / (reorder * 3.5)).toFixed(2));
-        }
-    }
-};
-
 // Helper to find by MongoDB ID or productId string
 const findProductByIdOrCode = async (idStr) => {
     let product = null;
@@ -73,8 +51,6 @@ exports.createProduct = async (req, res) => {
         discount: req.body.discount || 'No active discount'
     });
 
-    updateProductRisk(product);
-
     try {
         const newProduct = await product.save();
         res.status(201).json(newProduct);
@@ -112,8 +88,6 @@ exports.updateProduct = async (req, res) => {
                 product.archiveReason = "";
             }
         }
-
-        updateProductRisk(product);
 
         const updatedProduct = await product.save();
         res.json(updatedProduct);

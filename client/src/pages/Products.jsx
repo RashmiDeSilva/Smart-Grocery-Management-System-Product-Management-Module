@@ -17,7 +17,7 @@ import {
   Boxes
 } from "lucide-react";
 import CustomSelect from "../components/CustomSelect";
-import { MAIN_CATEGORIES } from "../constants";
+import { MAIN_CATEGORIES } from "../constants/product-constants";
 
 const API = "http://localhost:5000/api/products";
 
@@ -87,9 +87,7 @@ const Products = () => {
           productName: p.productName ?? p.name,
           mainCategory: p.mainCategory ?? p.category,
           sellingPrice: p.sellingPrice ?? p.price ?? 0,
-          salesCount: p.sold || p.salesCount || 0,
-          riskLevel: p.riskLevel || "LOW",
-          riskAction: p.riskAction || "No action needed"
+          salesCount: p.sold || p.salesCount || 0
         }))
       );
     } catch (err) {

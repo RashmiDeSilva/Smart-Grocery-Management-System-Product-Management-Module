@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, Save, X, Upload, Pencil, ClipboardList, PackageSearch } from "lucide-react";
 import CustomSelect from "../components/CustomSelect";
-import { MAIN_CATEGORIES, SUB_CATEGORIES, validateProduct } from "../constants";
+import { MAIN_CATEGORIES, SUB_CATEGORIES, validateProduct } from "../constants/product-constants";
 import FileUploadModal from "../components/FileUploadModal";
 
 const API = "http://localhost:5000/api/products";

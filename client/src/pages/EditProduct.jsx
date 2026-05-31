@@ -3,7 +3,7 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { ArrowLeft, Save, X, Upload } from "lucide-react";
 import CustomSelect from "../components/CustomSelect";
 import FileUploadModal from "../components/FileUploadModal";
-import { MAIN_CATEGORIES, SUB_CATEGORIES, validateProduct } from "../constants";
+import { MAIN_CATEGORIES, SUB_CATEGORIES, validateProduct } from "../constants/product-constants";
 
 const API = "http://localhost:5000/api/products";
 
@@ -22,7 +22,6 @@ const EditProduct = () => {
         sellingPrice: "",
         imageUrl: "",
         reorderLevel: "",
-        riskLevel: "LOW",
     });
 
     const [errors, setErrors] = useState([]);
@@ -49,7 +48,6 @@ const EditProduct = () => {
                         sellingPrice: pd.sellingPrice ?? pd.price ?? "",
                         imageUrl: pd.imageUrl || "",
                         reorderLevel: pd.reorderLevel ?? "",
-                        riskLevel: pd.riskLevel || "LOW",
                     });
                 } else {
                     setErrors(["Product not found."]);
@@ -103,7 +101,6 @@ const EditProduct = () => {
             sellingPrice: Number(form.sellingPrice),
             imageUrl: form.imageUrl.trim(),
             reorderLevel: Number(form.reorderLevel),
-            riskLevel: form.riskLevel,
         };
 
         try {
@@ -295,36 +292,6 @@ const EditProduct = () => {
                         >
                             <Upload size={16} /> Choose File / Drag & Drop
                         </button>
-                    </div>
-
-                    <div className="products-field" style={{ gridColumn: "span 2" }}>
-                        <label>AI Expiry Risk Level</label>
-                        <div style={{
-                            width: '100%',
-                            padding: '0.875rem 1rem',
-                            borderRadius: '1.25rem',
-                            border: '1.5px solid transparent',
-                            backgroundColor: '#DCE3DF',
-                            color: 'rgba(15, 23, 42, 0.6)',
-                            fontWeight: 800,
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            cursor: 'not-allowed',
-                            fontSize: '0.775rem'
-                        }}>
-                            <span>{form.riskLevel === "HIGH" ? "High Risk" : form.riskLevel === "MEDIUM" ? "Medium Risk" : "Low Risk"}</span>
-                            <span style={{ fontSize: '0.5rem', color: 'rgba(15, 23, 42, 0.4)' }}>▼</span>
-                        </div>
-                        <p style={{
-                            fontSize: '0.75rem',
-                            color: 'rgba(15, 23, 42, 0.5)',
-                            marginTop: '0.5rem',
-                            fontStyle: 'italic',
-                            fontWeight: 700
-                        }}>
-                            This field is automatically managed by the AI Expiry Risk Predictor and cannot be manually changed.
-                        </p>
                     </div>
 
                     <div className="products-form-actions-2col mt-4 border-t border-[#0F172A]/5 pt-6">
